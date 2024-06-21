@@ -54,23 +54,32 @@ function findTodo(id) {
 
 
 function addToDo(Todo) {
+  h = stripHtml(Todo);
+  console.log(h)
   let localTodos = JSON.parse(localStorage.getItem("todo")) ?? [];
   console.log(localTodos[localTodos.length - 1], localTodos);
   const id = localTodos[localTodos.length - 1] ? localTodos[localTodos.length - 1].id + 1 : 1;
-  localTodos.push({ id: id, title: Todo, checked: false });
+  localTodos.push({ id: id, title: h, checked: false });
   localStorage.setItem("todo", JSON.stringify(localTodos));
-
-  renderPage(currentPage);
+  const totalPages = Math.ceil((Todos.length+1) / ITEMS_PER_PAGE);
+  renderPage(totalPages);
 }
 const addbutton = document.getElementById("submitbutton");
 addbutton.addEventListener("click", onSubmit);
 const Form = document.getElementById("name");
+Form.addEventListener("keypress", function(event) {
+  if (event.key === "Enter" && Form.value != "") {
+    onSubmit(event);
+  }
+})
 
 function onSubmit(event) {
   event.preventDefault();
+  if (Form.value != "") {
   let body = Form.value;
   addToDo(body);
-  Form.value = "";
+  Form.value = ""; 
+}
 }
 
 function deleteToDo(id) {
@@ -151,6 +160,12 @@ FilterCl.addEventListener("click", function () {
   // Todos = JSON.parse(localStorage.getItem("todo")) ?? [];
   renderPage(1);
 });
+
+function stripHtml(html) {
+  let tmp = document.createElement('DIV');
+  tmp.innerHTML = html;
+  return tmp.textContent || tmp.innerText || "";
+}
 
 function renderPage(page) {
   const startIndex = (page - 1) * ITEMS_PER_PAGE;

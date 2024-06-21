@@ -51,7 +51,7 @@ label {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
 }
 
@@ -69,7 +69,7 @@ label {
 #submitbutton {
   background-color: blue;
   color: white;
-  width: 1fr;
+  width: 148px;
 }
 
 #List {

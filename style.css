@@ -1,110 +1,198 @@
-*{
-box-sizing: border-box;
+@media screen and (min-width: 800px) {
+  #header {
+    margin-left: 16vw;
+    margin-top: 20px;
+
+    font-size: 50px;
+    font-family: "Courier New", Courier, monospace;
+  }
+
+  .container {
+    padding-left: 20vw;
+  }
+
+  #subheader {
+    margin-left: 16vw;
+    width: 30em;
+    font-size: 27px;
+  }
+
+  input[type="text"] {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    display: block;
+    width: 61vw;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  #TodoForm {
+    margin-left: 20%;
+    margin-top: 30px;
+  }
+
+  body {
+    background-color: azure;
+  }
+
+  label {
+    font-size: 20px;
+  }
+
+  .button-flex {
+    width: 61vw;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    justify-content: space-between;
+  }
+
+  #xxx {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+  }
+
+  .filter-buttons {
+    background-color: blue;
+    color: white;
+  }
+
+  #submitbutton {
+    background-color: blue;
+    color: white;
+    width: 148px;
+  }
+
+  #List {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-left: 20%;
+    padding-left: 0;
+  }
+
+  .pagination {
+    margin-left: 36vw;
+    position: absolute;
+    bottom: 20px;
+  }
+
+  .item {
+    border: 1px solid #333333;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    width: 150px;
+    height: 150px;
+    overflow: auto;
+  }
+
+  .delete {
+    background-color: rgb(255, 0, 0);
+    /*position: absolute;  */
+    top: 0px;
+    right: 0px;
+    float: right;
+  }
+
+  .complete {
+    right: 15px;
+    float: right;
+    background-color: rgb(16, 246, 16);
+  }
 }
-#header {
-  margin-left: 20%;
-  margin-top: 20px;
-  
-  font-size: 50px;
-  font-family: "Courier New", Courier, monospace;
-}
 
-.container {
- padding-left: 20vw;
-}
+@media screen and (max-width: 800px) {
+  body {
+    background-color: azure;
+  }
 
-#subheader {
-  margin-left: 20%;
-  width: 30em;
-  font-size: 27px;
-}
+  .pagination {
+    margin-left: 20vw;
+    position: absolute;
+    bottom: 1vh;
+  }
 
-input[type="text"] {
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-  display: block;
-  width: 61vw;
-  height: 30px;
-  border-radius: 10px;
-  font-size: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
+  #header {
+    margin-left: 20vw;
+    margin-top: 2vh;
+    font-size: 3vh;
+    font-family: "Courier New", Courier, monospace;
+  }
 
+  #subheader {
+    margin-left: 20vw;
+    font-size: 2vh;
+    margin-bottom: 1vh;
+  }
 
-#TodoForm {
-  margin-left: 20%;
-  margin-top: 30px;
-}
+  label {
+    font-size: 2vh;
+    margin-left: 1vw;
+  }
 
+  input[type="text"] {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    display: block;
+    width: 93vw;
+    /* height: 30px; */
+    border-radius: 10px;
+    font-size: 20px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
+  }
 
-body {
-  background-color: azure;
-}
+  .filter-buttons {
+    background-color: blue;
+    color: white;
+    margin-top: 1vh;
+  }
 
-label {
-  font-size: 20px;
-}
+  #submitbutton {
+    background-color: blue;
+    color: white;
+  }
 
-.button-flex {
-  width: 61vw;
-  display: inline-flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  /* align-items: center; */
-  justify-content: space-between;
-}
+  #List div {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+  }
 
-#xxx {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5px;
-}
+  #List {
+    margin-top: 1vh;
+    margin-left: 20vw;
+    padding-left: 0;
+    font-size: 3vh;
+  }
 
-.filter-buttons {
-  background-color: blue;
-  color: white;
-}
+  .delete {
+    background-color: rgb(255, 0, 0);
+    /*position: absolute;  */
+    top: 0px;
+    right: 0px;
+    float: right;
+  }
 
-#submitbutton {
-  background-color: blue;
-  color: white;
-  width: 148px;
-}
+  .complete {
+    right: 15px;
+    float: right;
+    background-color: rgb(16, 246, 16);
+  }
 
-#List {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
-  margin-left: 20%;
-  padding-left: 0;
-}
+  #xxx {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+  }
 
-.pagination {
-  margin-left: 688px;
-  position: absolute;
-  bottom: 20px;
-}
-
-.item {
-  border: 1px solid #333333;
-  position: relative;
-  background-color: rgb(255, 255, 255);
-  width: 150px;
-  height: 150px;
-  overflow: auto;
-}
-
-.delete {
-  background-color: rgb(255, 0, 0);
-  /*position: absolute;  */
-  top: 0px;
-  right: 0px;
-  float: right;
-}
-
-.complete {
-  right: 15px;
-  float: right;
-  background-color: rgb(16, 246, 16);
+  .item {
+    overflow: auto;
+  }
 }

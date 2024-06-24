@@ -8,34 +8,35 @@
   </head>
   <body>
     <div class="container">
-    <div id="header">ToDo приложение</div>
-    <div id="subheader">список задач на сегодня</div>
+      <div id="header">ToDo приложение</div>
+      <div id="subheader">список задач на сегодня</div>
 
-   
       <label for="name">Что надо сделать? </label>
       <input type="text" name="name" id="name" required autocomplete="off" />
-   
-    <div class="button-flex">
-      <button id="submitbutton">Добавить</button>
-      <div id="xxx">
-        <button class="filter-buttons" id="check-all">Отметить все</button>
-        <button class="filter-buttons" id="delete-all">Удалить все</button>
-        <button class="filter-buttons" id="filter-checked">
-         Перейти к отмеченным
-        </button>
-        <button class="filter-buttons" id="filter-unchecked">
-          Перейти к неотмеченным
-        </button>
-        <button class="filter-buttons" id="filter-clear">Убрать фильтры</button>
+
+      <div class="button-flex">
+        <button id="submitbutton">Добавить</button>
+        <div id="xxx">
+          <button class="filter-buttons" id="check-all">Отметить все</button>
+          <button class="filter-buttons" id="delete-all">Удалить все</button>
+          <button class="filter-buttons" id="filter-checked">
+            Перейти к отмеченным
+          </button>
+          <button class="filter-buttons" id="filter-unchecked">
+            Перейти к неотмеченным
+          </button>
+          <button class="filter-buttons" id="filter-clear">
+            Убрать фильтры
+          </button>
+        </div>
       </div>
     </div>
-  </div>
 
     <ul id="List"></ul>
     <div class="pagination">
-      <button id="prev-page">Previous</button>
+      <button id="prev-page">Пред</button>
       <span id="page-info"></span>
-      <button id="next-page">Next</button>
+      <button id="next-page">След</button>
     </div>
     <script src="script.js"></script>
   </body>

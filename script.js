@@ -4,12 +4,12 @@ const pageInfo = document.getElementById("page-info");
 const ITEMS_PER_PAGE = 6;
 let currentPage = 1;
 let pageTodos = [];
-const List = document.getElementById("List");
+const LIST = document.getElementById("List");
 let Todos = JSON.parse(localStorage.getItem("todo")) ?? [];
 
 let filter = "";
 renderPage(1);
-  localStorage.setItem("todo", JSON.stringify(Todos));
+localStorage.setItem("todo", JSON.stringify(Todos));
 
 function createTodoHTML(TodosItem, key) {
   const newLi = document.createElement("div");
@@ -21,13 +21,13 @@ function createTodoHTML(TodosItem, key) {
   }
   newLi.insertAdjacentHTML(
     "afterbegin",
-    "<button class='complete' onclick='completeToDo(" +
+    "<button class='complete' ondblclick='event.stopPropagation()' onclick='completeToDo(" +
       TodosItem.id +
       ")'>V</button>"
   );
   newLi.insertAdjacentHTML(
     "afterbegin",
-    "<button class='delete' onclick='deleteToDo(" +
+    "<button class='delete' ondblclick='event.stopPropagation()' onclick='deleteToDo(" +
       TodosItem.id +
       ")'>x</button>"
   );
@@ -45,41 +45,41 @@ function findTodo(id) {
   Todos.forEach((item, i) => {
     console.log(i);
     if (item.id == id) {
-      console.log("finded: "+ i +" "+ id);
+      console.log("finded: " + i + " " + id);
       result = i;
     }
   });
   return result;
 }
 
-
 function addToDo(Todo) {
-  h = stripHtml(Todo);
-  console.log(h)
+  stringTodo = stripHtml(Todo);
   let localTodos = JSON.parse(localStorage.getItem("todo")) ?? [];
   console.log(localTodos[localTodos.length - 1], localTodos);
-  const id = localTodos[localTodos.length - 1] ? localTodos[localTodos.length - 1].id + 1 : 1;
-  localTodos.push({ id: id, title: h, checked: false });
+  const id = localTodos[localTodos.length - 1]
+    ? localTodos[localTodos.length - 1].id + 1
+    : 1;
+  localTodos.push({ id: id, title: stringTodo, checked: false });
   localStorage.setItem("todo", JSON.stringify(localTodos));
-  const totalPages = Math.ceil((Todos.length+1) / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil((Todos.length + 1) / ITEMS_PER_PAGE);
   renderPage(totalPages);
 }
-const addbutton = document.getElementById("submitbutton");
-addbutton.addEventListener("click", onSubmit);
-const Form = document.getElementById("name");
-Form.addEventListener("keypress", function(event) {
-  if (event.key === "Enter" && Form.value != "") {
+const addButton = document.getElementById("submitbutton");
+addButton.addEventListener("click", onSubmit);
+const form = document.getElementById("name");
+form.addEventListener("keypress", function (event) {
+  if (event.key === "Enter" && form.value != "") {
     onSubmit(event);
   }
-})
+});
 
 function onSubmit(event) {
   event.preventDefault();
-  if (Form.value != "") {
-  let body = Form.value;
-  addToDo(body);
-  Form.value = ""; 
-}
+  if (form.value != "") {
+    let body = form.value;
+    addToDo(body);
+    form.value = "";
+  }
 }
 
 function deleteToDo(id) {
@@ -96,26 +96,23 @@ function completeToDo(id) {
   Todos[findTodo(id)].checked = !Todos[findTodo(id)].checked;
   localStorage.setItem("todo", JSON.stringify(Todos));
   renderPage(currentPage);
- 
 }
 
-let buttchecker = true;
-const ButtCheck = document.getElementById("check-all");
-ButtCheck.addEventListener("click", checkAll);
+let buttChecker = true;
+const buttCheck = document.getElementById("check-all");
+buttCheck.addEventListener("click", checkAll);
 
 function checkAll() {
-    Todos.forEach(function (TodoItem) {
-      TodoItem.checked = buttchecker;
-    });
-    localStorage.setItem("todo", JSON.stringify(Todos));
-
-    renderPage(currentPage);
-    buttchecker = !buttchecker;
- 
+  Todos.forEach(function (TodoItem) {
+    TodoItem.checked = buttChecker;
+  });
+  localStorage.setItem("todo", JSON.stringify(Todos));
+  renderPage(currentPage);
+  buttChecker = !buttChecker;
 }
 
-const ButtDel = document.getElementById("delete-all");
-ButtDel.addEventListener("click", deleteAll);
+const buttDel = document.getElementById("delete-all");
+buttDel.addEventListener("click", deleteAll);
 
 function deleteAll() {
   if (Todos.length != 0) {
@@ -123,7 +120,6 @@ function deleteAll() {
     if (question) {
       Todos = [];
       localStorage.setItem("todo", JSON.stringify(Todos));
-
       renderPage(currentPage);
     }
   }
@@ -131,38 +127,37 @@ function deleteAll() {
 function edit(id) {
   let value =
     prompt("", Todos[findTodo(id)].title) ?? Todos[findTodo(id)].title;
-    console.log(value);
+  console.log(value);
   Todos[findTodo(id)].title = value;
   localStorage.setItem("todo", JSON.stringify(Todos));
-
   renderPage(currentPage);
 }
 
-const FilterCh = document.getElementById("filter-checked");
-FilterCh.addEventListener("click", function () {
+const filterCh = document.getElementById("filter-checked");
+filterCh.addEventListener("click", function () {
   // Todos = JSON.parse(localStorage.getItem("todo")) ?? [];
   filter = "checked";
 
   renderPage(1);
 });
 
-const FilterUch = document.getElementById("filter-unchecked");
-FilterUch.addEventListener("click", function () {
+const filterUch = document.getElementById("filter-unchecked");
+filterUch.addEventListener("click", function () {
   // Todos = JSON.parse(localStorage.getItem("todo")) ?? [];
   filter = "unchecked";
 
   renderPage(1);
 });
 
-const FilterCl = document.getElementById("filter-clear");
-FilterCl.addEventListener("click", function () {
+const filterCl = document.getElementById("filter-clear");
+filterCl.addEventListener("click", function () {
   filter = "";
   // Todos = JSON.parse(localStorage.getItem("todo")) ?? [];
   renderPage(1);
 });
 
 function stripHtml(html) {
-  let tmp = document.createElement('DIV');
+  let tmp = document.createElement("DIV");
   tmp.innerHTML = html;
   return tmp.textContent || tmp.innerText || "";
 }
@@ -188,7 +183,7 @@ function renderPage(page) {
 
   pageTodos = Todos.slice(startIndex, endIndex);
 
-  List.innerHTML = pageTodos.map(createTodoHTML).join("");
+  LIST.innerHTML = pageTodos.map(createTodoHTML).join("");
 
   const totalPages = Math.ceil(Todos.length / ITEMS_PER_PAGE);
   pageInfo.textContent = `Page ${page} of ${totalPages}`;

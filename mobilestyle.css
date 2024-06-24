@@ -1,0 +1,88 @@
+body {
+  background-color: azure;
+}
+
+.pagination {
+  margin-left: 20vw;
+  position: absolute;
+  bottom: 1vh;
+}
+
+#header {
+  margin-left: 20vw;
+  margin-top: 2vh;
+  font-size: 3vh;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#subheader {
+  margin-left: 20vw;
+  font-size: 2vh;
+  margin-bottom: 1vh;
+}
+
+label {
+  font-size: 2vh;
+  margin-left: 1vw;
+}
+
+input[type="text"] {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  display: block;
+  width: 93vw;
+  /* height: 30px; */
+  border-radius: 10px;
+  font-size: 20px;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
+
+.filter-buttons {
+  background-color: blue;
+  color: white;
+  margin-top: 1vh;
+}
+
+#submitbutton {
+  background-color: blue;
+  color: white;
+}
+
+#List div {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+#List {
+  margin-top: 1vh;
+  margin-left: 20vw;
+  padding-left: 0;
+  font-size: 3vh;
+}
+
+.delete {
+  background-color: rgb(255, 0, 0);
+  /*position: absolute;  */
+  top: 0px;
+  right: 0px;
+  float: right;
+}
+
+.complete {
+  right: 15px;
+  float: right;
+  background-color: rgb(16, 246, 16);
+}
+
+#xxx {
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  overflow: auto;
+}

@@ -1,3 +1,4 @@
+// TODO: обернуть все в функцию
 const prevPageBtn = document.getElementById("prev-page");
 const nextPageBtn = document.getElementById("next-page");
 const pageInfo = document.getElementById("page-info");
@@ -5,19 +6,19 @@ const ITEMS_PER_PAGE = 6;
 let currentPage = 1;
 let pageTodos = [];
 const LIST = document.getElementById("List");
-let Todos = JSON.parse(localStorage.getItem("todo")) ?? [];
+let Todos = JSON.parse(localStorage.getItem("todo")) ?? []; // TODO: вынести в отдельную функцию
 
-let filter = "";
+let filter = ""; // TODO: поменять название
 renderPage(1);
-localStorage.setItem("todo", JSON.stringify(Todos));
+localStorage.setItem("todo", JSON.stringify(Todos)); // TODO: убрать
 
 function createTodoHTML(TodosItem, key) {
-    const newLi = document.createElement("div");
+    const newLi = document.createElement("div"); // TODO: поменять на <li>
 
     if (TodosItem.checked) {
         newLi.innerHTML = "<s>" + TodosItem.title + "</s>";
     } else {
-        newLi.innerHTML = TodosItem.title;
+        newLi.innerHTML = TodosItem.title; // использовать textContent
     }
     newLi.insertAdjacentHTML(
         "afterbegin",
@@ -42,14 +43,15 @@ function createTodoHTML(TodosItem, key) {
 
 function findTodo(id) {
     let result = null;
+
     Todos.forEach((item, i) => {
         console.log(i);
-        if (item.id == id) {
+        if (item.id === id) {
             console.log("finded: " + i + " " + id);
             result = i;
         }
     });
-    return result;
+    return result; // TODO: заменить на findIndex
 }
 
 function addToDo(Todo) {
@@ -58,9 +60,9 @@ function addToDo(Todo) {
     console.log(localTodos[localTodos.length - 1], localTodos);
     const id = localTodos[localTodos.length - 1]
         ? localTodos[localTodos.length - 1].id + 1
-        : 1;
+        : 1; // TODO: переимновать
     localTodos.push({ id: id, title: stringTodo, checked: false });
-    localStorage.setItem("todo", JSON.stringify(localTodos));
+    localStorage.setItem("todo", JSON.stringify(localTodos));  // TODO: вынести в отдельную функцию
     const totalPages = Math.ceil((Todos.length + 1) / ITEMS_PER_PAGE);
     renderPage(totalPages);
 }
@@ -126,14 +128,14 @@ function deleteAll() {
 }
 function edit(id) {
     let value =
-        prompt("", Todos[findTodo(id)].title) ?? Todos[findTodo(id)].title;
+        prompt("", Todos[findTodo(id)].title) ?? Todos[findTodo(id)].title; // TODO: доставать 1 раз
     console.log(value);
     Todos[findTodo(id)].title = value;
     localStorage.setItem("todo", JSON.stringify(Todos));
     renderPage(currentPage);
 }
 
-const filterCh = document.getElementById("filter-checked");
+const filterCh = document.getElementById("filter-checked"); // TODO: переименовать
 filterCh.addEventListener("click", function () {
     // Todos = JSON.parse(localStorage.getItem("todo")) ?? [];
     filter = "checked";
@@ -165,11 +167,11 @@ function stripHtml(html) {
 function renderPage(page) {
     const startIndex = (page - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
-    Todos = JSON.parse(localStorage.getItem("todo")) ?? [];
+    Todos = JSON.parse(localStorage.getItem("todo")) ?? []; // TODO: убрать сайд эффект
     currentPage = page;
 
     switch (filter) {
-        case "checked":
+        case "checked": // TODO: вынести фильтры в константы
             Todos = Todos.filter((todoItem) => {
                 return todoItem.checked;
             });
@@ -181,7 +183,7 @@ function renderPage(page) {
             break;
     }
 
-    pageTodos = Todos.slice(startIndex, endIndex);
+    pageTodos = Todos.slice(startIndex, endIndex); // TODO: убрать pageTodos, создать временную переменную внутри функции для хранения элементов, нужных для рендера
 
     LIST.innerHTML = pageTodos.map(createTodoHTML).join("");
 

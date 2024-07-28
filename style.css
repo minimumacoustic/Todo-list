@@ -1,5 +1,6 @@
 @media screen and (min-width: 800px) {
   #header {
+/*    TODO: не использовать внешние отступы*/
     margin-left: 16vw;
     margin-top: 20px;
 
@@ -30,6 +31,7 @@
   }
 
   #TodoForm {
+/*    TODO: удалить*/
     margin-left: 20%;
     margin-top: 30px;
   }

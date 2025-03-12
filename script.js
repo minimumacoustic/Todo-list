@@ -206,3 +206,20 @@ nextPageBtn.addEventListener("click", () => {
     renderPage(currentPage);
   }
 });
+
+const  fetchData =  () =>{
+    const options = {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YTIwMjQwOTVmMjQ3ZTM2YTcwZWUzN2U2OTVmZGIwYyIsIm5iZiI6MTc0MTczMzU5Mi4zMTEsInN1YiI6IjY3ZDBiZWQ4NjY4OTJiYWQ2MjgxNDYyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3DWVrrXyOWpMOlwL0LmEvqHfN1bCi1vE7eHl6you5b8'
+        }
+      };
+      
+      fetch('https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1', options)
+        .then(res => res.json())
+        .then(res => console.log(res))
+        .catch(err => console.error(err));
+   
+}
+addButton.addEventListener("dbclick", fetchData);

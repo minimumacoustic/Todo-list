@@ -207,31 +207,3 @@ nextPageBtn.addEventListener("click", () => {
   }
 });
 
-const  fetchData = async () =>{
-   const options = {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YTIwMjQwOTVmMjQ3ZTM2YTcwZWUzN2U2OTVmZGIwYyIsIm5iZiI6MTc0MTczMzU5Mi4zMTEsInN1YiI6IjY3ZDBiZWQ4NjY4OTJiYWQ2MjgxNDYyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3DWVrrXyOWpMOlwL0LmEvqHfN1bCi1vE7eHl6you5b8'
-        }
-      };
-        try {
-            const endpoint = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc`;
-            const response = await fetch(endpoint, options);
-      
-            if (!response.ok) {
-              throw new Error("Sorry");
-            } else {
-              const data = await response.json();
-              if (data.response == 'false') {
-                setErrorMessage(data.error || 'failed to fetch movies.');
-              }
-              console.log(data);
-            }
-          } catch (error) {
-            console.error(`Error fetching movies : ${error}`);
-            setErrorMessage(`Error fetching movies, please try again later.`);
-          }
-   
-}
-addButton.addEventListener("dbclick", fetchData);
